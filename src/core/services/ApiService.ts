@@ -19,7 +19,8 @@ class ApiService {
   public static init(app: App<Element>) {
     ApiService.vueInstance = app;
     ApiService.vueInstance.use(VueAxios, axios);
-    ApiService.vueInstance.axios.defaults.baseURL = "http://localhost";
+    ApiService.vueInstance.axios.defaults.baseURL =
+      process.env.VUE_APP_API_BASE_URL + process.env.VUE_APP_API_PREFIX;
   }
 
   /**
@@ -28,7 +29,7 @@ class ApiService {
   public static setHeader(): void {
     ApiService.vueInstance.axios.defaults.headers.common[
       "Authorization"
-    ] = `Token ${JwtService.getToken()}`;
+    ] = `Bearer ${JwtService.getToken()}`;
   }
 
   /**

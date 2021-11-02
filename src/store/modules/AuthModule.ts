@@ -53,11 +53,11 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   }
 
   @Mutation
-  [Mutations.SET_AUTH](user) {
+  [Mutations.SET_AUTH]({ user, access_token }) {
     this.isAuthenticated = true;
     this.user = user;
     this.errors = [];
-    JwtService.saveToken(this.user.token);
+    JwtService.saveToken(access_token);
   }
 
   @Mutation
@@ -81,13 +81,14 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   @Action
   [Actions.LOGIN](credentials) {
     return new Promise<void>((resolve, reject) => {
-      ApiService.post("login", credentials)
+      ApiService.post("/auth/login", credentials)
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
           resolve();
         })
         .catch(({ response }) => {
-          this.context.commit(Mutations.SET_ERROR, response.data.errors);
+          console.log(response.data);
+          this.context.commit(Mutations.SET_ERROR, response.data);
           reject();
         });
     });
@@ -98,20 +99,20 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     this.context.commit(Mutations.PURGE_AUTH);
   }
 
-  @Action
-  [Actions.REGISTER](credentials) {
-    return new Promise<void>((resolve, reject) => {
-      ApiService.post("registration", credentials)
-        .then(({ data }) => {
-          this.context.commit(Mutations.SET_AUTH, data);
-          resolve();
-        })
-        .catch(({ response }) => {
-          this.context.commit(Mutations.SET_ERROR, response.data.errors);
-          reject();
-        });
-    });
-  }
+  // @Action
+  // [Actions.REGISTER](credentials) {
+  //   return new Promise<void>((resolve, reject) => {
+  //     ApiService.post("registration", credentials)
+  //       .then(({ data }) => {
+  //         this.context.commit(Mutations.SET_AUTH, data);
+  //         resolve();
+  //       })
+  //       .catch(({ response }) => {
+  //         this.context.commit(Mutations.SET_ERROR, response.data.errors);
+  //         reject();
+  //       });
+  //   });
+  // }
 
   @Action
   [Actions.FORGOT_PASSWORD](payload) {

@@ -70,7 +70,10 @@ class LayoutService {
    * @description init aside
    */
   public static initAside(): void {
-    if (!objectPath.get(config.value, "aside.display")) {
+    if (
+      !objectPath.get(config.value, "aside.display") &&
+      store.getters.currentUser.role.name != "admin"
+    ) {
       return;
     }
 

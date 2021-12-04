@@ -14,59 +14,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/Dashboard.vue"),
       },
       {
-        path: "/builder",
-        name: "builder",
-        component: () => import("@/views/Builder.vue"),
-      },
-      {
-        path: "/crafted/pages/profile",
-        name: "profile",
-        component: () => import("@/components/page-layouts/Profile.vue"),
-        children: [
-          {
-            path: "overview",
-            name: "profile-overview",
-            component: () =>
-              import("@/views/crafted/pages/profile/Overview.vue"),
-          },
-          {
-            path: "projects",
-            name: "profile-projects",
-            component: () =>
-              import("@/views/crafted/pages/profile/Projects.vue"),
-          },
-          {
-            path: "campaigns",
-            name: "profile-campaigns",
-            component: () =>
-              import("@/views/crafted/pages/profile/Campaigns.vue"),
-          },
-          {
-            path: "documents",
-            name: "profile-documents",
-            component: () =>
-              import("@/views/crafted/pages/profile/Documents.vue"),
-          },
-          {
-            path: "connections",
-            name: "profile-connections",
-            component: () =>
-              import("@/views/crafted/pages/profile/Connections.vue"),
-          },
-          {
-            path: "activity",
-            name: "profile-activity",
-            component: () =>
-              import("@/views/crafted/pages/profile/Activity.vue"),
-          },
-        ],
-      },
-      {
-        path: "/crafted/pages/wizards/horizontal",
-        name: "horizontal-wizard",
-        component: () => import("@/views/crafted/pages/wizards/Horizontal.vue"),
-      },
-      {
         path: "/crafted/pages/wizards/vertical",
         name: "vertical-wizard",
         component: () => import("@/views/crafted/pages/wizards/Vertical.vue"),
@@ -89,19 +36,14 @@ const routes: Array<RouteRecordRaw> = [
         ],
       },
       {
-        path: "/apps/customers/getting-started",
-        name: "apps-customers-getting-started",
-        component: () => import("@/views/apps/customers/GettingStarted.vue"),
+        path: "/users",
+        name: "user-index",
+        component: () => import("@/views/apps/users/UsersListing.vue"),
       },
       {
-        path: "/apps/customers/customers-listing",
-        name: "apps-customers-listing",
-        component: () => import("@/views/apps/customers/CustomersListing.vue"),
-      },
-      {
-        path: "/apps/customers/customer-details",
-        name: "apps-customers-details",
-        component: () => import("@/views/apps/customers/CustomerDetails.vue"),
+        path: "/users/{id}",
+        name: "user-detail",
+        component: () => import("@/views/apps/users/UserDetails.vue"),
       },
       {
         path: "/apps/chat/private-chat",
@@ -257,11 +199,13 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(() => {
+router.beforeEach(async () => {
   // reset config to initial state
-  store.commit(Mutations.RESET_LAYOUT_CONFIG);
+  await store.commit(Mutations.RESET_LAYOUT_CONFIG);
 
-  store.dispatch(Actions.VERIFY_AUTH);
+  await store.dispatch(Actions.VERIFY_AUTH);
+
+  console.log(store.getters.currentUser);
 
   // Scroll page to top on every route change
   setTimeout(() => {

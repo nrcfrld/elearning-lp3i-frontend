@@ -1,6 +1,7 @@
 <template>
   <!--begin::Menu wrapper-->
   <div
+    v-if="user.roles && user.role.name != 'admin'"
     class="header-menu align-items-stretch"
     data-kt-drawer="true"
     data-kt-drawer-name="header-menu"
@@ -34,7 +35,7 @@
       data-kt-menu="true"
     >
       <template v-for="(item, i) in MainMenuConfig" :key="i">
-        <template v-if="!item.heading">
+        <template v-if="!item.heading && item.roles.includes(user.role.name)">
           <template v-for="(menuItem, j) in item.pages" :key="j">
             <div v-if="menuItem.heading" class="menu-item me-lg-1">
               <router-link
@@ -56,7 +57,7 @@
           </template>
         </template>
         <div
-          v-if="item.heading"
+          v-if="item.heading && item.roles.includes(user.role.name)"
           data-kt-menu-trigger="click"
           data-kt-menu-placement="bottom-start"
           class="menu-item menu-lg-down-accordion me-lg-1"
@@ -198,279 +199,6 @@
           </div>
         </div>
       </template>
-
-      <div
-        data-kt-menu-trigger="click"
-        data-kt-menu-placement="bottom-start"
-        class="menu-item menu-lg-down-accordion me-lg-1"
-      >
-        <span class="menu-link py-3">
-          <span class="menu-title">{{ translate("resources") }}</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-        <div
-          class="
-            menu-sub
-            menu-sub-lg-down-accordion
-            menu-sub-lg-dropdown
-            menu-rounded-0
-            py-lg-4
-            w-lg-225px
-          "
-        >
-          <div class="menu-item">
-            <a
-              class="menu-link py-3"
-              href="https://preview.keenthemes.com/metronic8/vue/docs/#/utilities"
-            >
-              <span class="menu-icon">
-                <i v-if="headerMenuIcons === 'font'" class="bi bi-box fs-3"></i>
-                <span
-                  v-if="headerMenuIcons === 'svg'"
-                  class="svg-icon svg-icon-2"
-                >
-                  <inline-svg src="media/icons/duotune/general/gen002.svg" />
-                </span>
-              </span>
-              <span class="menu-title">{{ translate("components") }}</span>
-            </a>
-          </div>
-          <div class="menu-item">
-            <a
-              class="menu-link py-3"
-              href="https://preview.keenthemes.com/metronic8/vue/docs/#/doc-overview"
-            >
-              <span class="menu-icon">
-                <i
-                  v-if="headerMenuIcons === 'font'"
-                  class="bi bi-card-text fs-3"
-                ></i>
-                <span
-                  v-else-if="headerMenuIcons === 'svg'"
-                  class="svg-icon svg-icon-2"
-                >
-                  <inline-svg src="media/icons/duotune/abstract/abs027.svg" />
-                </span>
-              </span>
-              <span class="menu-title">{{ translate("documentation") }}</span>
-            </a>
-          </div>
-          <div class="menu-item">
-            <a
-              class="menu-link py-3"
-              href="https://preview.keenthemes.com/metronic8/vue/docs/#/changelog"
-            >
-              <span class="menu-icon">
-                <i
-                  v-if="headerMenuIcons === 'font'"
-                  class="bi bi-journal-code fs-3"
-                ></i>
-                <span
-                  v-else-if="headerMenuIcons === 'svg'"
-                  class="svg-icon svg-icon-2"
-                >
-                  <inline-svg src="media/icons/duotune/coding/cod003.svg" />
-                </span>
-              </span>
-              <span class="menu-title"
-                >{{ translate("changelog") }} v{{ version }}</span
-              >
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div
-        data-kt-menu-trigger="click"
-        data-kt-menu-placement="bottom-start"
-        class="menu-item menu-lg-down-accordion me-lg-1"
-      >
-        <span class="menu-link py-3">
-          <span class="menu-title">{{ translate("megaMenu") }}</span>
-          <span class="menu-arrow d-lg-none"></span>
-        </span>
-        <div
-          class="
-            menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown
-            w-100 w-lg-600px
-            p-5 p-lg-5
-          "
-          style=""
-        >
-          <!--begin:Row-->
-          <div class="row" data-kt-menu-dismiss="true">
-            <!--begin:Col-->
-            <div class="col-lg-4 border-left-lg-1">
-              <div class="menu-inline menu-column menu-active-bg">
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!--end:Col-->
-            <!--begin:Col-->
-            <div class="col-lg-4 border-left-lg-1">
-              <div class="menu-inline menu-column menu-active-bg">
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!--end:Col-->
-            <!--begin:Col-->
-            <div class="col-lg-4 border-left-lg-1">
-              <div class="menu-inline menu-column menu-active-bg">
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="#" class="menu-link">
-                    <span class="menu-bullet">
-                      <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">{{
-                      translate("exampleLink")
-                    }}</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!--end:Col-->
-          </div>
-          <!--end:Row-->
-        </div>
-      </div>
       <!--end::Menu-->
     </div>
   </div>
@@ -478,13 +206,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { MenuComponent } from "@/assets/ts/components";
 import MainMenuConfig from "@/core/config/MainMenuConfig";
 import { headerMenuIcons } from "@/core/helpers/config";
 import { version } from "@/core/helpers/documentation";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "KTMenu",
@@ -492,6 +221,11 @@ export default defineComponent({
   setup() {
     const { t, te } = useI18n();
     const route = useRoute();
+    const store = useStore();
+
+    const user = computed(() => {
+      return store.getters.currentUser;
+    });
 
     const hasActiveChildren = (match) => {
       return route.path.indexOf(match) !== -1;
@@ -515,6 +249,7 @@ export default defineComponent({
       MainMenuConfig,
       translate,
       version,
+      user,
     };
   },
 });

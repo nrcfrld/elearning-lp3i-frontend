@@ -1,7 +1,7 @@
 import LayoutConfigTypes from "@/core/config/LayoutConfigTypes";
 
 const config: LayoutConfigTypes = {
-  themeName: "Metronic",
+  themeName: "E-learning LP3I",
   themeVersion: "8.0.25",
   demo: "demo1",
   main: {
@@ -39,9 +39,9 @@ const config: LayoutConfigTypes = {
   },
   aside: {
     display: true,
-    theme: "dark",
+    theme: "light",
     fixed: true,
-    menuIcon: "svg",
+    menuIcon: "font",
     minimized: false,
     minimize: true,
     hoverable: true,

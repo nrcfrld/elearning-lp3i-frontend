@@ -25,7 +25,7 @@
       "
       data-kt-menu="true"
     >
-      <template v-for="(item, i) in MainMenuConfig" :key="i">
+      <template v-for="(item, i) in mainMenus" :key="i">
         <div v-if="item.heading" class="menu-item">
           <div class="menu-content pt-8 pb-2">
             <span class="menu-section text-muted text-uppercase fs-8 ls-1">
@@ -175,33 +175,6 @@
           </div>
         </template>
       </template>
-      <div class="menu-item">
-        <div class="menu-content">
-          <div class="separator mx-1 my-4"></div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <a
-          class="menu-link"
-          href="https://preview.keenthemes.com/metronic8/vue/docs/#/changelog"
-        >
-          <span class="menu-icon">
-            <i
-              v-if="asideMenuIcons === 'font'"
-              class="bi bi-card-text fs-3"
-            ></i>
-            <span
-              v-else-if="asideMenuIcons === 'svg'"
-              class="svg-icon svg-icon-2"
-            >
-              <inline-svg src="media/icons/duotune/general/gen005.svg" />
-            </span>
-          </span>
-          <span class="menu-title"
-            >{{ translate("changelog") }} v{{ version }}</span
-          >
-        </a>
-      </div>
     </div>
     <!--end::Menu-->
   </div>
@@ -231,13 +204,14 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { ScrollComponent } from "@/assets/ts/components/_ScrollComponent";
 import { MenuComponent } from "@/assets/ts/components/MenuComponent";
 import { version } from "@/core/helpers/documentation";
 import { asideMenuIcons } from "@/core/helpers/config";
+import { useStore } from "vuex";
 import MainMenuConfig from "@/core/config/MainMenuConfig";
 
 export default defineComponent({
@@ -246,7 +220,12 @@ export default defineComponent({
   setup() {
     const { t, te } = useI18n();
     const route = useRoute();
+    const store = useStore();
     const scrollElRef = ref<null | HTMLElement>(null);
+
+    const user = computed(() => {
+      return store.getters.currentUser;
+    });
 
     onMounted(() => {
       ScrollComponent.reinitialization();
@@ -268,12 +247,17 @@ export default defineComponent({
       return route.path.indexOf(match) !== -1;
     };
 
+    const mainMenus = MainMenuConfig.filter((item) =>
+      item.roles.includes(user.value.role.name)
+    );
+
     return {
       hasActiveChildren,
       MainMenuConfig,
       asideMenuIcons,
       version,
       translate,
+      mainMenus,
     };
   },
 });

@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted, watch } from "vue";
+import { defineComponent, computed, onMounted, watch, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import KTAside from "@/layout/aside/Aside.vue";
@@ -102,6 +102,9 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
 
+    const role = computed(() => {
+      return store.getters.currentUser.role;
+    });
     // show page loading
     store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-loading");
 
@@ -126,6 +129,10 @@ export default defineComponent({
       ScrollComponent.bootstrap();
       DrawerComponent.updateAll();
       ScrollComponent.updateAll();
+      console.log(role.value.name);
+      if (role.value.name != "admin") {
+        store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "aside-enabled");
+      }
 
       // Simulate the delay page loading
       setTimeout(() => {
@@ -161,6 +168,7 @@ export default defineComponent({
       breadcrumbs,
       themeLightLogo,
       themeDarkLogo,
+      role,
     };
   },
 });

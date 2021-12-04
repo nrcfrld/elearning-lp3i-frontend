@@ -1,5 +1,6 @@
 const DocMenuConfig = [
   {
+    roles: ["admin", "mahasiswa", "dosen"],
     pages: [
       {
         heading: "dashboard",
@@ -7,265 +8,154 @@ const DocMenuConfig = [
         svgIcon: "media/icons/duotune/art/art002.svg",
         fontIcon: "bi-app-indicator",
       },
+    ],
+  },
+  {
+    roles: ["mahasiswa", "dosen"],
+    pages: [
       {
-        heading: "layoutBuilder",
-        route: "/builder",
-        svgIcon: "media/icons/duotune/general/gen019.svg",
-        fontIcon: "bi-layers",
+        heading: "Perkuliahanku",
+        route: "/perkuliahanku",
+        svgIcon: "media/icons/duotune/art/art002.svg",
+        fontIcon: "bi-app-indicator",
       },
     ],
   },
   {
-    heading: "craft",
-    route: "/crafted",
+    roles: ["admin"],
+    heading: "Manajemen",
+    route: "/",
     pages: [
       {
-        sectionTitle: "pages",
-        route: "/pages",
-        svgIcon: "media/icons/duotune/general/gen022.svg",
-        fontIcon: "bi-archive",
-        sub: [
-          {
-            sectionTitle: "profile",
-            route: "/profile",
-            sub: [
-              {
-                heading: "profileOverview",
-                route: "/crafted/pages/profile/overview",
-              },
-              {
-                heading: "projects",
-                route: "/crafted/pages/profile/projects",
-              },
-              {
-                heading: "campaigns",
-                route: "/crafted/pages/profile/campaigns",
-              },
-              {
-                heading: "documents",
-                route: "/crafted/pages/profile/documents",
-              },
-              {
-                heading: "connections",
-                route: "/crafted/pages/profile/connections",
-              },
-              {
-                heading: "activity",
-                route: "/crafted/pages/profile/activity",
-              },
-            ],
-          },
-          {
-            sectionTitle: "wizards",
-            route: "/wizard",
-            sub: [
-              {
-                heading: "horizontal",
-                route: "/crafted/pages/wizards/horizontal",
-              },
-              {
-                heading: "vertical",
-                route: "/crafted/pages/wizards/vertical",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        sectionTitle: "account",
-        route: "/account",
+        sectionTitle: "Users",
+        route: "/users",
         svgIcon: "media/icons/duotune/communication/com006.svg",
-        fontIcon: "bi-person",
+        fontIcon: "bi-people",
         sub: [
           {
-            heading: "accountOverview",
-            route: "/crafted/account/overview",
+            heading: "Daftar",
+            route: "/users",
           },
           {
-            heading: "settings",
-            route: "/crafted/account/settings",
+            heading: "Tambah",
+            route: "/users/create",
           },
         ],
       },
       {
-        sectionTitle: "authentication",
+        sectionTitle: "Kampus",
+        route: "/campus",
+        svgIcon: "media/icons/duotune/communication/com006.svg",
+        fontIcon: "bi-building",
+        sub: [
+          {
+            heading: "Daftar",
+            route: "/campus",
+          },
+          {
+            heading: "Tambah",
+            route: "/campus/create",
+          },
+        ],
+      },
+      {
+        sectionTitle: "Subject",
+        route: "/subjects",
+        svgIcon: "media/icons/duotune/communication/com006.svg",
+        fontIcon: "bi-bullseye",
+        sub: [
+          {
+            heading: "Daftar",
+            route: "/subjects",
+          },
+          {
+            heading: "Tambah",
+            route: "/subjects/create",
+          },
+        ],
+      },
+      {
+        sectionTitle: "Study Program",
+        route: "/study-programs",
         svgIcon: "media/icons/duotune/technology/teh004.svg",
         fontIcon: "bi-sticky",
         sub: [
           {
-            sectionTitle: "basicFlow",
-            sub: [
-              {
-                heading: "signIn",
-                route: "/sign-in",
-              },
-              {
-                heading: "signUp",
-                route: "/sign-up",
-              },
-              {
-                heading: "passwordReset",
-                route: "/password-reset",
-              },
-            ],
+            heading: "Daftar",
+            route: "/study-programs",
           },
           {
-            heading: "error404",
-            route: "/404",
-          },
-          {
-            heading: "error500",
-            route: "/500",
+            heading: "Tambah",
+            route: "/study-programs/create",
           },
         ],
       },
       {
-        sectionTitle: "modals",
-        route: "/modals",
-        svgIcon: "media/icons/duotune/art/art009.svg",
-        fontIcon: "bi-shield-check",
+        sectionTitle: "Major",
+        route: "/majors",
+        svgIcon: "media/icons/duotune/technology/teh004.svg",
+        fontIcon: "bi-journal",
         sub: [
           {
-            sectionTitle: "general",
-            route: "/general",
-            sub: [
-              {
-                heading: "inviteFriends",
-                route: "/crafted/modals/general/invite-friends",
-              },
-              {
-                heading: "viewUsers",
-                route: "/crafted/modals/general/view-user",
-              },
-              {
-                heading: "upgradePlan",
-                route: "/crafted/modals/general/upgrade-plan",
-              },
-              {
-                heading: "shareAndEarn",
-                route: "/crafted/modals/general/share-and-earn",
-              },
-            ],
+            heading: "Daftar",
+            route: "/majors",
           },
           {
-            sectionTitle: "forms",
-            route: "/forms",
-            sub: [
-              {
-                heading: "newTarget",
-                route: "/crafted/modals/forms/new-target",
-              },
-              {
-                heading: "newCard",
-                route: "/crafted/modals/forms/new-card",
-              },
-              {
-                heading: "newAddress",
-                route: "/crafted/modals/forms/new-address",
-              },
-              {
-                heading: "createAPIKey",
-                route: "/crafted/modals/forms/create-api-key",
-              },
-            ],
-          },
-          {
-            sectionTitle: "wizards",
-            route: "/wizards",
-            sub: [
-              {
-                heading: "twoFactorAuth",
-                route: "/crafted/modals/wizards/two-factor-auth",
-              },
-              {
-                heading: "createApp",
-                route: "/crafted/modals/wizards/create-app",
-              },
-              {
-                heading: "createAccount",
-                route: "/crafted/modals/wizards/create-account",
-              },
-            ],
+            heading: "Tambah",
+            route: "/majors/create",
           },
         ],
       },
       {
-        sectionTitle: "widgets",
-        route: "/widgets",
-        svgIcon: "media/icons/duotune/general/gen025.svg",
-        fontIcon: "bi-layers",
+        sectionTitle: "Kelas",
+        route: "/classrooms",
+        svgIcon: "media/icons/duotune/technology/teh004.svg",
+        fontIcon: "bi-book",
         sub: [
           {
-            heading: "widgetsLists",
-            route: "/crafted/widgets/lists",
+            heading: "Daftar",
+            route: "/majors",
           },
           {
-            heading: "widgetsStatistics",
-            route: "/crafted/widgets/statistics",
+            heading: "Tambah",
+            route: "/majors/create",
+          },
+        ],
+      },
+      {
+        sectionTitle: "Help/FAQ",
+        route: "/helps",
+        svgIcon: "media/icons/duotune/technology/teh004.svg",
+        fontIcon: "bi-patch-question",
+        sub: [
+          {
+            heading: "Daftar",
+            route: "/helps",
           },
           {
-            heading: "widgetsCharts",
-            route: "/crafted/widgets/charts",
-          },
-          {
-            heading: "widgetsMixed",
-            route: "/crafted/widgets/mixed",
-          },
-          {
-            heading: "widgetsTables",
-            route: "/crafted/widgets/tables",
-          },
-          {
-            heading: "widgetsFeeds",
-            route: "/crafted/widgets/feeds",
+            heading: "Tambah",
+            route: "/helps/create",
           },
         ],
       },
     ],
   },
   {
-    heading: "apps",
-    route: "/apps",
+    roles: ["admin"],
+    heading: "Administrator",
+    route: "/administrators",
     pages: [
       {
-        sectionTitle: "customers",
-        route: "/customers",
+        heading: "Konfigurasi",
+        route: "/configurations",
         svgIcon: "media/icons/duotune/finance/fin006.svg",
-        fontIcon: "bi-printer",
-        sub: [
-          {
-            heading: "gettingStarted",
-            route: "/apps/customers/getting-started",
-          },
-          {
-            heading: "customersListing",
-            route: "/apps/customers/customers-listing",
-          },
-          {
-            heading: "customerDetails",
-            route: "/apps/customers/customer-details",
-          },
-        ],
+        fontIcon: "bi-gear",
       },
       {
-        sectionTitle: "chat",
-        route: "/chat",
-        svgIcon: "media/icons/duotune/communication/com012.svg",
-        fontIcon: "bi-chat-left",
-        sub: [
-          {
-            heading: "privateChat",
-            route: "/apps/chat/private-chat",
-          },
-          {
-            heading: "groupChat",
-            route: "/apps/chat/group-chat",
-          },
-          {
-            heading: "drawerChat",
-            route: "/apps/chat/drawer-chat",
-          },
-        ],
+        heading: "Role & Hak Akses",
+        route: "/configurations",
+        svgIcon: "media/icons/duotune/finance/fin006.svg",
+        fontIcon: "bi-shield-shaded",
       },
     ],
   },

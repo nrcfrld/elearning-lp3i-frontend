@@ -53,7 +53,7 @@
         </thead>
         <!--end::Table head-->
         <!--begin::Table body-->
-        <tbody class="fw-bold text-gray-600">
+        <tbody v-if="!isLoading" class="fw-bold text-gray-600">
           <template v-for="(item, i) in getItems" :key="i">
             <tr class="odd">
               <template v-for="(cell, i) in tableHeader" :key="i">
@@ -66,6 +66,13 @@
               <!--end::Item=-->
             </tr>
           </template>
+        </tbody>
+        <tbody v-if="isLoading" class="fw-bold text-gray-600">
+          <tr>
+            <td :colspan="tableHeader.length" class="text-center">
+              Loading...
+            </td>
+          </tr>
         </tbody>
         <!--end::Table body-->
       </table>
@@ -139,9 +146,11 @@ export default defineComponent({
     tableData: { type: Array, required: true },
     enableItemsPerPageDropdown: Boolean,
     rowsPerPage: Number,
+    loading: Boolean,
   },
   components: {},
   setup(props) {
+    let isLoading = ref(props.loading);
     const data = ref(props.tableData);
     const currentSort = ref<string>("");
     const click = ref<number>(1);
@@ -194,6 +203,7 @@ export default defineComponent({
       getItems,
       sort,
       currentSort,
+      isLoading,
     };
   },
 });

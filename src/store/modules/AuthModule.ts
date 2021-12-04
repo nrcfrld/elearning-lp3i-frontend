@@ -5,7 +5,6 @@ import { Module, Action, Mutation, VuexModule } from "vuex-module-decorators";
 
 export interface User {
   name: string;
-  surname: string;
   email: string;
   password: string;
   token: string;
@@ -57,7 +56,9 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     this.isAuthenticated = true;
     this.user = user;
     this.errors = [];
-    JwtService.saveToken(access_token);
+    if (access_token) {
+      JwtService.saveToken(access_token);
+    }
   }
 
   @Mutation
@@ -134,7 +135,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   [Actions.VERIFY_AUTH]() {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("verify")
+      ApiService.post("auth/verify", {})
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
         })

@@ -14,6 +14,9 @@ export const config = computed(() => {
  * @returns {boolean}
  */
 export const displaySidebar = computed(() => {
+  if (store.getters.currentUser.role.name != "admin") {
+    return false;
+  }
   return store.getters.layoutConfig("sidebar.display");
 });
 
@@ -46,6 +49,9 @@ export const headerLeft = computed(() => {
  * @returns {boolean}
  */
 export const asideDisplay = computed(() => {
+  if (store.getters.currentUser.role.name != "admin") {
+    return false;
+  }
   return store.getters.layoutConfig("aside.display") === true;
 });
 
@@ -94,6 +100,12 @@ export const loaderLogo = computed(() => {
  * @returns {boolean}
  */
 export const asideEnabled = computed(() => {
+  if (
+    store.getters.currentUser.role &&
+    store.getters.currentUser.role.name != "admin"
+  ) {
+    return false;
+  }
   return !!store.getters.layoutConfig("aside.display");
 });
 

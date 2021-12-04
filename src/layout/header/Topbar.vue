@@ -123,7 +123,7 @@
         data-kt-menu-placement="bottom-end"
         data-kt-menu-flip="bottom"
       >
-        <img src="media/avatars/150-26.jpg" alt="metronic" />
+        <img :src="user.avatar_url" alt="metronic" />
       </div>
       <KTUserMenu></KTUserMenu>
       <!--end::Menu-->
@@ -150,10 +150,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import KTNotificationsMenu from "@/layout/header/partials/NotificationsMenu.vue";
 import KTQuickLinksMenu from "@/layout/header/partials/QuickLinksMenu.vue";
 import KTUserMenu from "@/layout/header/partials/UserMenu.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "topbar",
@@ -161,6 +162,17 @@ export default defineComponent({
     KTNotificationsMenu,
     KTQuickLinksMenu,
     KTUserMenu,
+  },
+  setup() {
+    const store = useStore();
+
+    const user = computed(() => {
+      return store.getters.currentUser;
+    });
+
+    return {
+      user,
+    };
   },
 });
 </script>

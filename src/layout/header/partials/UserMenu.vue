@@ -21,7 +21,7 @@
       <div class="menu-content d-flex align-items-center px-3">
         <!--begin::Avatar-->
         <div class="symbol symbol-50px me-5">
-          <img alt="Logo" src="media/avatars/150-26.jpg" />
+          <img alt="Logo" :src="user.avatar_url" />
         </div>
         <!--end::Avatar-->
 
@@ -29,17 +29,27 @@
         <div class="d-flex flex-column">
           <div class="fw-bolder d-flex align-items-center fs-5">
             {{ user.name }}
-            <!-- <span
-              class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2"
-              >Pro</span
-            > -->
           </div>
           <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{
             user.email
           }}</a>
         </div>
+
         <!--end::Username-->
       </div>
+      <span
+        class="
+          badge badge-light-success
+          fw-bolder
+          fs-8
+          px-2
+          py-1
+          ms-2
+          d-inline
+          text-capitalize
+        "
+        >{{ user.roles ? user.roles[0].name : "-" }}</span
+      >
     </div>
     <!--end::Menu item-->
 
@@ -50,7 +60,7 @@
     <!--begin::Menu item-->
     <div class="menu-item px-5">
       <router-link to="/pages/profile/overview" class="menu-link px-5">
-        My Profile
+        Profile Saya
       </router-link>
     </div>
     <!--end::Menu item-->

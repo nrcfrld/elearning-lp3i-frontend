@@ -18,12 +18,19 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
       <!--begin::Logo-->
-      <a href="#" v-if="asideTheme === 'dark'">
+      <a href="#">
+        <img
+          src="https://www.plj.ac.id/assets/img/logoplj.png"
+          alt="Logo"
+          class="h-50px logo"
+        />
+      </a>
+      <!-- <a href="#" v-if="asideTheme === 'dark'">
         <img alt="Logo" :src="darkLogo" class="h-25px logo" />
       </a>
       <a href="#" v-if="asideTheme === 'light'">
         <img alt="Logo" :src="lightLogo" class="h-25px logo" />
-      </a>
+      </a> -->
       <!--end::Logo-->
 
       <!--begin::Aside toggler-->
@@ -53,23 +60,7 @@
     <div
       class="aside-footer flex-column-auto pt-5 pb-7 px-5"
       id="kt_aside_footer"
-    >
-      <a
-        href="https://preview.keenthemes.com/metronic8/vue/docs/#/doc-overview"
-        class="btn btn-custom btn-primary w-100"
-        data-bs-toggle="tooltip"
-        data-bs-trigger="hover"
-        data-bs-delay-show="8000"
-        title="Check out the complete documentation with over 100 components"
-      >
-        <span class="btn-label">
-          {{ t("docsAndComponents") }}
-        </span>
-        <span class="svg-icon btn-icon svg-icon-2">
-          <inline-svg src="media/icons/duotune/general/gen005.svg" />
-        </span>
-      </a>
-    </div>
+    ></div>
     <!--end::Footer-->
   </div>
   <!--end::Aside-->

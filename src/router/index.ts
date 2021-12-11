@@ -14,142 +14,42 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/Dashboard.vue"),
       },
       {
-        path: "/crafted/pages/wizards/vertical",
-        name: "vertical-wizard",
-        component: () => import("@/views/crafted/pages/wizards/Vertical.vue"),
-      },
-      {
-        path: "/crafted/account",
-        name: "account",
-        component: () => import("@/views/crafted/account/Account.vue"),
-        children: [
-          {
-            path: "overview",
-            name: "account-overview",
-            component: () => import("@/views/crafted/account/Overview.vue"),
-          },
-          {
-            path: "settings",
-            name: "account-settings",
-            component: () => import("@/views/crafted/account/Settings.vue"),
-          },
-        ],
-      },
-      {
         path: "/users",
         name: "user-index",
         component: () => import("@/views/apps/users/UsersListing.vue"),
       },
       {
-        path: "/users/{id}",
+        path: "/users/:id",
         name: "user-detail",
         component: () => import("@/views/apps/users/UserDetails.vue"),
       },
       {
-        path: "/apps/chat/private-chat",
-        name: "apps-private-chat",
-        component: () => import("@/views/apps/chat/Chat.vue"),
+        name: "subject",
+        path: "/subjects",
+        component: () => import("@/views/apps/subjects/Index.vue"),
       },
       {
-        path: "/apps/chat/group-chat",
-        name: "apps-group-chat",
-        component: () => import("@/views/apps/chat/Chat.vue"),
+        name: "subject-detail",
+        path: "/subjects/:id",
+        component: () => import("@/views/apps/subjects/Index.vue"),
       },
       {
-        path: "/apps/chat/drawer-chat",
-        name: "apps-drawer-chat",
-        component: () => import("@/views/apps/chat/DrawerChat.vue"),
+        name: "subject-create",
+        path: "/subjects/create",
+        component: () => import("@/views/apps/subjects/Create.vue"),
       },
+      // Perkuliahan
       {
-        path: "/crafted/modals/general/invite-friends",
-        name: "modals-general-invite-friends",
-        component: () =>
-          import("@/views/crafted/modals/general/InviteFriends.vue"),
-      },
-      {
-        path: "/crafted/modals/general/view-user",
-        name: "modals-general-view-user",
-        component: () => import("@/views/crafted/modals/general/ViewUsers.vue"),
-      },
-      {
-        path: "/crafted/modals/general/upgrade-plan",
-        name: "modals-general-upgrade-plan",
-        component: () =>
-          import("@/views/crafted/modals/general/UpgradePlan.vue"),
-      },
-      {
-        path: "/crafted/modals/general/share-and-earn",
-        name: "modals-general-share-and-earn",
-        component: () =>
-          import("@/views/crafted/modals/general/ShareAndEarn.vue"),
-      },
-      {
-        path: "/crafted/modals/forms/new-target",
-        name: "modals-forms-new-target",
-        component: () => import("@/views/crafted/modals/forms/NewTarget.vue"),
-      },
-      {
-        path: "/crafted/modals/forms/new-card",
-        name: "modals-forms-new-card",
-        component: () => import("@/views/crafted/modals/forms/NewCard.vue"),
-      },
-      {
-        path: "/crafted/modals/forms/new-address",
-        name: "modals-forms-new-address",
-        component: () => import("@/views/crafted/modals/forms/NewAddress.vue"),
-      },
-      {
-        path: "/crafted/modals/forms/create-api-key",
-        name: "modals-forms-create-api-key",
-        component: () =>
-          import("@/views/crafted/modals/forms/CreateApiKey.vue"),
-      },
-      {
-        path: "/crafted/modals/wizards/two-factor-auth",
-        name: "modals-wizards-two-factor-auth",
-        component: () =>
-          import("@/views/crafted/modals/wizards/TwoFactorAuth.vue"),
-      },
-      {
-        path: "/crafted/modals/wizards/create-app",
-        name: "modals-wizards-create-app",
-        component: () => import("@/views/crafted/modals/wizards/CreateApp.vue"),
-      },
-      {
-        path: "/crafted/modals/wizards/create-account",
-        name: "modals-wizards-create-account",
-        component: () =>
-          import("@/views/crafted/modals/wizards/CreateAccount.vue"),
-      },
-      {
-        path: "/crafted/widgets/lists",
-        name: "widgets-list",
-        component: () => import("@/views/crafted/widgets/Lists.vue"),
-      },
-      {
-        path: "/crafted/widgets/statistics",
-        name: "widgets-statistics",
-        component: () => import("@/views/crafted/widgets/Statistics.vue"),
-      },
-      {
-        path: "/crafted/widgets/charts",
-        name: "widgets-charts",
-        component: () => import("@/views/crafted/widgets/Charts.vue"),
-      },
-      {
-        path: "/crafted/widgets/mixed",
-        name: "widgets-mixed",
-        component: () => import("@/views/crafted/widgets/Mixed.vue"),
-      },
-      {
-        path: "/crafted/widgets/tables",
-        name: "widgets-tables",
-        component: () => import("@/views/crafted/widgets/Tables.vue"),
-      },
-      {
-        path: "/crafted/widgets/feeds",
-        name: "widgets-feeds",
-        component: () => import("@/views/crafted/widgets/Feeds.vue"),
+        path: "/perkuliahanku",
+        name: "college",
+        component: () => import("@/views/apps/college/Index.vue"),
+        children: [
+          {
+            path: "/:id",
+            name: "college",
+            component: () => import("@/views/apps/college/Index.vue"),
+          },
+        ],
       },
     ],
   },

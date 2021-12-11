@@ -55,10 +55,11 @@ class ApiService {
    */
   public static get(
     resource: string,
-    slug = "" as string
+    slug = "" as string,
+    config: AxiosRequestConfig = {}
   ): Promise<AxiosResponse> {
     return ApiService.vueInstance.axios
-      .get(`${resource}/${slug}`)
+      .get(`${resource}/${slug}`, config)
       .catch((error) => {
         throw new Error(`[KT] ApiService ${error}`);
       });

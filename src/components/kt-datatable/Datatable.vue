@@ -32,7 +32,7 @@
                 :class="[
                   cell.name && 'min-w-125px',
                   cell.sortable && 'sorting',
-                  tableHeader.length - 1 === i && 'text-end',
+                  tableHeader.length - 1 === i && 'text-center',
                   currentSort ===
                     `${cell.sortingField ? cell.sortingField : cell.key}2` &&
                     'sorting_desc',

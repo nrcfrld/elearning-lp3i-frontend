@@ -51,6 +51,16 @@ const routes: Array<RouteRecordRaw> = [
           },
         ],
       },
+      {
+        name: "campuses",
+        path: "/campus",
+        component: () => import("@/views/apps/campuses/Index.vue"),
+      },
+      {
+        name: "campuses-create",
+        path: "/campus/create",
+        component: () => import("@/views/apps/campuses/Create.vue"),
+      },
     ],
   },
   {

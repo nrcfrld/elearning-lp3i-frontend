@@ -61,9 +61,19 @@ const routes: Array<RouteRecordRaw> = [
         path: "/campus/create",
         component: () => import("@/views/apps/campuses/Create.vue"),
       },
-    ],
+      {
+        name: "study-programs",
+        path: "/study-programs",
+        component: () => import("@/views/apps/study-programs/Index.vue"),
+      },
+      {
+        name: "study-programs-create",
+        path: "/study-programs/create",
+        component: () => import("@/views/apps/study-programs/Create.vue"),
+      },
+    ],   
   },
-  {
+  { 
     path: "/",
     component: () => import("@/components/page-layouts/Auth.vue"),
     children: [

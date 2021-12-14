@@ -65,6 +65,26 @@ const routes: Array<RouteRecordRaw> = [
         path: "/study-programs/create",
         component: () => import("@/views/apps/study-programs/Create.vue"),
       },
+      {
+        name: "classrooms",
+        path: "/classrooms",
+        component: () => import("@/views/apps/classrooms/Index.vue"),
+      },
+      {
+        name: "classrooms-create",
+        path: "/classrooms/create",
+        component: () => import("@/views/apps/classrooms/Create.vue"),
+      },
+      {
+        name: "helps",
+        path: "/helps",
+        component: () => import("@/views/apps/helps/Index.vue"),
+      },
+      {
+        name: "helps-create",
+        path: "/helps/create",
+        component: () => import("@/views/apps/helps/Create.vue"),
+      },
     ],
   },
   {

@@ -114,11 +114,11 @@ const DocMenuConfig = [
         sub: [
           {
             heading: "Daftar",
-            route: "/majors",
+            route: "/classrooms",
           },
           {
             heading: "Tambah",
-            route: "/majors/create",
+            route: "/classrooms/create",
           },
         ],
       },

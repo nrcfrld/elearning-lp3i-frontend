@@ -71,6 +71,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "/study-programs/create",
         component: () => import("@/views/apps/study-programs/Create.vue"),
       },
+      {
+        name: "classrooms",
+        path: "/classrooms",
+        component: () => import("@/views/apps/classrooms/Index.vue"),
+      },
+      {
+        name: "classrooms-create",
+        path: "/classrooms/create",
+        component: () => import("@/views/apps/classrooms/Create.vue"),
+      }, 
     ],   
   },
   { 

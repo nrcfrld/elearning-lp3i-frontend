@@ -183,7 +183,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import Datatable from "@/components/kt-datatable/Datatable.vue";
 import { MenuComponent } from "@/assets/ts/components";
 import { setCurrentPageBreadcrumbs } from "@/core/helpers/breadcrumb";
@@ -198,7 +198,6 @@ export default defineComponent({
     // ExportitemsModal,
   },
   setup() {
-    const app = getCurrentInstance();
     let refresh = ref(1);
     let loading = ref(true);
     const checkeditems = ref([]);

@@ -31,7 +31,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: "subject-detail",
         path: "/subjects/:id",
-        component: () => import("@/views/apps/subjects/Index.vue"),
+        component: () => import("@/views/apps/subjects/Detail.vue"),
+        props: true,
       },
       {
         name: "subject-create",
@@ -43,13 +44,6 @@ const routes: Array<RouteRecordRaw> = [
         path: "/perkuliahanku",
         name: "college",
         component: () => import("@/views/apps/college/Index.vue"),
-        children: [
-          {
-            path: "/:id",
-            name: "college",
-            component: () => import("@/views/apps/college/Index.vue"),
-          },
-        ],
       },
       {
         name: "campuses",
@@ -71,9 +65,9 @@ const routes: Array<RouteRecordRaw> = [
         path: "/study-programs/create",
         component: () => import("@/views/apps/study-programs/Create.vue"),
       },
-    ],   
+    ],
   },
-  { 
+  {
     path: "/",
     component: () => import("@/components/page-layouts/Auth.vue"),
     children: [

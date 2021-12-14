@@ -27,7 +27,7 @@ const DocMenuConfig = [
     route: "/",
     pages: [
       {
-        sectionTitle: "Users",
+        sectionTitle: "Pengguna",
         route: "/users",
         svgIcon: "media/icons/duotune/communication/com006.svg",
         fontIcon: "bi-people",
@@ -59,7 +59,7 @@ const DocMenuConfig = [
         ],
       },
       {
-        sectionTitle: "Subject",
+        sectionTitle: "Matakuliah",
         route: "/subjects",
         svgIcon: "media/icons/duotune/communication/com006.svg",
         fontIcon: "bi-bullseye",
@@ -75,7 +75,7 @@ const DocMenuConfig = [
         ],
       },
       {
-        sectionTitle: "Study Program",
+        sectionTitle: "Program Studi",
         route: "/study-programs",
         svgIcon: "media/icons/duotune/technology/teh004.svg",
         fontIcon: "bi-sticky",
@@ -91,7 +91,7 @@ const DocMenuConfig = [
         ],
       },
       {
-        sectionTitle: "Major",
+        sectionTitle: "Jurusan",
         route: "/majors",
         svgIcon: "media/icons/duotune/technology/teh004.svg",
         fontIcon: "bi-journal",
@@ -129,7 +129,11 @@ const DocMenuConfig = [
         fontIcon: "bi-patch-question",
         sub: [
           {
-            heading: "Daftar",
+            heading: "Daftar Kategori Bantuan",
+            route: "/help-categories",
+          },
+          {
+            heading: "Daftar Bantuan",
             route: "/helps",
           },
           {

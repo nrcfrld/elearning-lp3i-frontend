@@ -113,23 +113,8 @@
             />
           </div>
         </template>
-        <template v-slot:cell-code="{ row: item }">
-          {{ item.code }}
-        </template>
         <template v-slot:cell-name="{ row: item }">
           <p class="text-center">{{ item.name }}</p>
-        </template>
-        <template v-slot:cell-campus="{ row: item }">
-          {{ item.campus.name }}
-        </template>
-        <template v-slot:cell-generation="{ row: item }">
-          {{ item.generation }}
-        </template>
-        <template v-slot:cell-semester="{ row: item }">
-          {{ item.semester }}
-        </template>
-        <template v-slot:cell-lecture="{ row: item }">
-          {{ item.lecture.name }}
         </template>
         <template v-slot:cell-actions="{ row: item }">
           <div class="btn-group">

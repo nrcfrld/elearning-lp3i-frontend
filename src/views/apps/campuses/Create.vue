@@ -58,7 +58,7 @@ import { AxiosRequestConfig } from "axios";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: "subject-create",
+  name: "campuses-create",
   setup() {
     const router = useRouter();
     const formRef = ref<null | HTMLFormElement>(null);

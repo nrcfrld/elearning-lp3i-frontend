@@ -324,6 +324,18 @@ export default defineComponent({
             }).then(() => {
               hideModal(addUserModalRef.value);
             });
+          } else {
+            loading.value = false;
+            Swal.fire({
+              text: "Sorry, looks like there are some errors detected, please try again.",
+              icon: "error",
+              buttonsStyling: false,
+              confirmButtonText: "Ok, got it!",
+              customClass: {
+                confirmButton: "btn btn-primary",
+              },
+            });
+            return false;
           }
         } else {
           Swal.fire({

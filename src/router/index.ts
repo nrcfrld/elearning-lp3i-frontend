@@ -72,6 +72,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/apps/study-programs/Create.vue"),
       },
       {
+
         name: "classrooms",
         path: "/classrooms",
         component: () => import("@/views/apps/classrooms/Index.vue"),
@@ -81,6 +82,17 @@ const routes: Array<RouteRecordRaw> = [
         path: "/classrooms/create",
         component: () => import("@/views/apps/classrooms/Create.vue"),
       }, 
+      {
+        name: "helps",
+        path: "/helps",
+        component: () => import("@/views/apps/helps/Index.vue"),
+      },
+      {
+        name: "helps-create",
+        path: "/helps/create",
+        component: () => import("@/views/apps/helps/Create.vue"),
+      },
+
     ],   
   },
   { 

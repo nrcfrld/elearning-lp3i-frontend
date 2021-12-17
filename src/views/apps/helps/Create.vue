@@ -161,45 +161,24 @@ export default defineComponent({
           trigger: "change",
         },
       ],
-      generation: [
+      content: [
         {
           required: true,
           message: "Tahun Angkatan diperlukan",
           trigger: "change",
         },
       ],
-      day: [
+      help_category_id: [
         {
           required: true,
           message: "Hari Pertemuan diperlukan",
           trigger: "change",
         },
       ],
-      sks: [
+      is_faq: [
         {
           required: true,
           message: "SKS diperlukan",
-          trigger: "change",
-        },
-      ],
-      semester: [
-        {
-          required: true,
-          message: "Semester diperlukan",
-          trigger: "change",
-        },
-      ],
-      lecture_id: [
-        {
-          required: true,
-          message: "Dosen Pengampu diperlukan",
-          trigger: "change",
-        },
-      ],
-      campus_id: [
-        {
-          required: true,
-          message: "Kampus diperlukan",
           trigger: "change",
         },
       ],

@@ -288,12 +288,6 @@ export default defineComponent({
       return false;
     };
 
-    const exportItems = async () => {
-      const response = await ApiService.post(`/helps/export`, {});
-
-      return window.open(response.data);
-    };
-
     return {
       items,
       tableHeader,
@@ -302,9 +296,8 @@ export default defineComponent({
       searchItems,
       checkeditems,
       deleteFewitems,
-      refresh,
+      refresh, 
       loading,
-      exportItems,
     };
   },
 });

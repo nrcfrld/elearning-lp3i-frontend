@@ -81,9 +81,19 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/apps/helps/Index.vue"),
       },
       {
-        name: "helps-create",
+        name: "helps-create", 
         path: "/helps/create",
         component: () => import("@/views/apps/helps/Create.vue"),
+      },
+      {
+        name: "help-categories",
+        path: "/help-categories",
+        component: () => import("@/views/apps/help-categories/Index.vue"),
+      },
+      {
+        name: "help-categories-create",
+        path: "/help-categories/create",
+        component: () => import("@/views/apps/help-categories/Create.vue"),
       },
     ],
   },

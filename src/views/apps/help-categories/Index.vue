@@ -29,7 +29,7 @@
         >
 
           <!--begin::Add item-->
-          <router-link :to="{ name: 'helps-create' }" class="btn btn-primary">
+          <router-link :to="{ name: 'help-categories-create' }" class="btn btn-primary">
             <span class="svg-icon svg-icon-2">
               <inline-svg src="media/icons/duotone/Navigation/Plus.svg" />
             </span>
@@ -39,7 +39,7 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Group actions-->
-        <div
+        <div 
           v-else
           class="d-flex justify-content-end align-items-center"
           data-kt-item-table-toolbar="selected"
@@ -101,14 +101,14 @@
         <template v-slot:cell-name="{ row: item }">
           {{ item.name }}
         </template>
-        <template v-slot:cell-content="{ row: item }">
-          {{ item.content }}
+        <template v-slot:cell-description="{ row: item }">
+          {{ item.description }}
         </template>
-        <template v-slot:cell-help_category="{ row: item }">
+        <!-- <template v-slot:cell-help_category="{ row: item }">
           {{ item.help_category.name }}
-        </template>
-        <template v-slot:cell-is_faq="{ row: item }">
-          <p class="text-center">{{ item.is_faq }}</p>
+        </template> -->
+        <template v-slot:cell-parent_id="{ row: item }"> 
+          <p class="text-center">{{ item.parent_id }}</p>
         </template>
 
         <!-- <template v-slot:cell-semester="{ row: item }">
@@ -171,7 +171,7 @@ import { ElMessageBox, ElMessage } from "element-plus";
 // import ExportitemsModal from "@/components/modals/forms/ExportitemsModal.vue";
 
 export default defineComponent({
-  name: "helps-listing",
+  name: "help-categories-listing",
   components: {
     Datatable,
     // ExportitemsModal,
@@ -195,13 +195,13 @@ export default defineComponent({
         sortable: true,
       },
       {
-        name: "Isi Konten",
-        key: "content",
+        name: "Deskripsi",
+        key: "description",
         sortable: true,
       },
       {
-        name: "FAQ",
-        key: "is_faq",
+        name: "Kategori Induk",
+        key: "parent_id",
         sortable: true,
       },
 
@@ -227,13 +227,13 @@ export default defineComponent({
 
     onMounted(async () => {
       MenuComponent.reinitialization();
-      setCurrentPageBreadcrumbs("Bantuan", ["Daftar Bantuan"]);
+      setCurrentPageBreadcrumbs("Kategori Bantuan", ["Daftar Kategori"]);
 
-      const response = await ApiService.get("/helps");
+      const response = await ApiService.get("/help-categories");
 
       items.value = response.data.data;
 
-      loading.value = false;
+      loading.value = false; 
       refresh.value += 1;
     });
 
@@ -269,7 +269,7 @@ export default defineComponent({
           items.value.splice(i, 1);
         }
       }
-      await ApiService.delete(`/helps/${id}`);
+      await ApiService.delete(`/help-categories/${id}`);
     };
 
     const search = ref<string>("");

@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Nama Bantuan</label>
+            <label class="required fs-6 fw-bold mb-2">Nama Kategori Bantuan</label>
             <!--end::Label-->
 
             <!--begin::Input-->
@@ -23,16 +23,16 @@
           </div>
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Kategori</label>
+            <label class="required fs-6 fw-bold mb-2">Kategori Induk</label>
             <!--end::Label-->
 
             <!--begin::Input-->
-            <el-form-item prop="help_category_id">
+            <el-form-item prop="parent_id">
               <el-select
                 filterable
                 class="w-100"
-                v-model="formData.help_category_id"
-                placeholder="Pilih Kategori"
+                v-model="formData.parent_id"
+                placeholder="Pilih Program Kategori"
               >
                 <el-option
                   v-for="helpCategory in helpCategories"
@@ -48,13 +48,13 @@
         <div class="row">
           <div class="col-md-12">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Konten</label>
+            <label class="required fs-6 fw-bold mb-2">Deskripsi</label>
             <!--end::Label-->
 
             <!--begin::Input-->
-            <el-form-item prop="name">
+            <el-form-item prop="description">
                 <editor
-                    v-model="formData.content"
+                    v-model="formData.description"
                     :init="{
                       height: 500,
                       menubar: false,
@@ -74,19 +74,6 @@
           </div>
         </div>
         <!--end::Input group-->
-        <div class="row">
-          <div class="col-md-12">
-            <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">IS FAQ?</label>
-            <!--end::Label-->
-
-            <!--begin::Input-->
-            <el-form-item prop="is_faq">
-              <el-checkbox v-model="formData.is_faq"/>
-            </el-form-item>
-            <!--end::Input-->
-          </div>
-        </div>
 
         
 
@@ -127,7 +114,7 @@ import { useRouter } from "vue-router";
 import Editor from "@tinymce/tinymce-vue";
 
 export default defineComponent({
-  name: "helps-create",
+  name: "help-categories-create",
   components:{
     Editor
   },
@@ -135,9 +122,7 @@ export default defineComponent({
     const router = useRouter();
     const formRef = ref<null | HTMLFormElement>(null);
     const loading = ref<boolean>(false);
-    const formData = reactive({
-      is_faq: false
-    });
+    const formData = reactive({});
 
     let helpCategories = ref([]);
 
@@ -146,7 +131,7 @@ export default defineComponent({
       MenuComponent.reinitialization();
 
       // Set Breadcrumbs
-      setCurrentPageBreadcrumbs("Bantuan", ["Daftar Bantuan"]);
+      setCurrentPageBreadcrumbs("Kategori Bantuan", ["Daftar Kategori Bantuan"]);
 
       // Load data for options select
       const helpCategoryResponse = await ApiService.get("/help-categories");
@@ -157,28 +142,21 @@ export default defineComponent({
       name: [
         {
           required: true,
-          message: "Nama Bantuan diperlukan",
+          message: "Nama Kategori Bantuan diperlukan",
           trigger: "change",
         },
       ],
-      content: [
+      description: [
         {
           required: true,
-          message: "Konten diperlukan",
+          message: "Deskripsi diperlukan",
           trigger: "change",
         },
       ],
-      help_category_id: [
+      parent_id: [
         {
           required: true,
-          message: "Kategori bantuan diperlukan",
-          trigger: "change",
-        },
-      ],
-      is_faq: [
-        {
-          required: false,
-          message: "FAQ diperlukan",
+          message: "Parent ID diperlukan",
           trigger: "change",
         },
       ],
@@ -195,7 +173,7 @@ export default defineComponent({
           // const data = <AxiosRequestConfig>formData.value;
 
           const postResponse = await ApiService.post(
-            "/helps",
+            "/help-categories",
             formData as AxiosRequestConfig
           );
           loading.value = false;
@@ -210,7 +188,7 @@ export default defineComponent({
                 confirmButton: "btn btn-primary",
               },
             }).then(() => {
-              router.push({ name: "helps" });
+              router.push({ name: "help-categories" });
             });
           }
         } else {

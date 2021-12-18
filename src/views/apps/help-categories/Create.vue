@@ -23,7 +23,7 @@
           </div>
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Kategori Induk</label>
+            <label class="fs-6 fw-bold mb-2">Kategori Induk</label>
             <!--end::Label-->
 
             <!--begin::Input-->
@@ -53,22 +53,7 @@
 
             <!--begin::Input-->
             <el-form-item prop="description">
-                <editor
-                    v-model="formData.description"
-                    :init="{
-                      height: 500,
-                      menubar: false,
-                      plugins: [
-                        'advlist autolink lists link image charmap',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'paste code help wordcount table',
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic |         alignleft aligncenter alignright |         bullist numlist outdent indent | help',
-                    }"
-                  >
-              </editor>
+                <el-input v-model="formData.description" type="textarea" placeholder="" />
             </el-form-item>
             <!--end::Input-->
           </div>
@@ -150,13 +135,6 @@ export default defineComponent({
         {
           required: true,
           message: "Deskripsi diperlukan",
-          trigger: "change",
-        },
-      ],
-      parent_id: [
-        {
-          required: true,
-          message: "Parent ID diperlukan",
           trigger: "change",
         },
       ],

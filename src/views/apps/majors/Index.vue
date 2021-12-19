@@ -13,7 +13,7 @@
             v-model="search"
             @input="searchItems()"
             class="form-control form-control-solid w-250px ps-15"
-            placeholder="Cari Kelas"
+            placeholder="Cari Jurusan"
           />
         </div>
         <!--end::Search-->
@@ -27,11 +27,9 @@
           class="d-flex justify-content-end"
           data-kt-item-table-toolbar="base"
         >
+
           <!--begin::Add item-->
-          <router-link
-            :to="{ name: 'classrooms-create' }"
-            class="btn btn-primary"
-          >
+          <router-link :to="{ name: 'majors-create' }" class="btn btn-primary">
             <span class="svg-icon svg-icon-2">
               <inline-svg src="media/icons/duotone/Navigation/Plus.svg" />
             </span>
@@ -99,15 +97,16 @@
               :value="item.id"
             />
           </div>
-        </template>
-        <template v-slot:cell-code="{ row: item }">
-          {{ item.code }}
+
         </template>
         <template v-slot:cell-name="{ row: item }">
-          <p class="text-center">{{ item.name }}</p>
+          {{ item.name }}
         </template>
-        <template v-slot:cell-major="{ row: item }">
-          {{ item.major.id }}
+        <template v-slot:cell-code="{ row: item }">
+         {{ item.code }} 
+        </template>
+        <template v-slot:cell-study_program="{ row: item }">
+          {{ item.study_program.name }}
         </template>
         <template v-slot:cell-actions="{ row: item }">
           <div class="btn-group">
@@ -141,8 +140,18 @@
               <li class="px-3">
                 <router-link
                   class="menu-item py-3 px-3 rounded-3 dropdown-item"
-                  :to="`/classrooms/${item.id}`"
-                  >Edit</router-link
+                  :to="{
+                    name: 'subject-detail',
+                    params: {
+                      id: item.id,
+                    },
+                  }"
+                  >View</router-link
+                >
+              </li>
+              <li class="px-3">
+                <a class="menu-item py-3 px-3 rounded-3 dropdown-item" href="#"
+                  >Edit</a
                 >
               </li>
             </ul>
@@ -163,7 +172,7 @@ import { ElMessageBox, ElMessage } from "element-plus";
 // import ExportitemsModal from "@/components/modals/forms/ExportitemsModal.vue";
 
 export default defineComponent({
-  name: "classrooms-listing",
+  name: "majors-listing",
   components: {
     Datatable,
     // ExportitemsModal,
@@ -181,19 +190,19 @@ export default defineComponent({
         name: "Actions",
         key: "actions",
       },
-      {
-        name: "Kode",
-        key: "code",
-        sortable: true,
-      },
-      {
+       {
         name: "Nama",
         key: "name",
         sortable: true,
       },
       {
-        name: "Jurusan",
-        key: "major",
+        name: "kode",
+        key: "code",
+        sortable: true,
+      },
+      {
+        name: "Program Studi",
+        key: "study_program",
         sortable: true,
       },
     ]);
@@ -203,10 +212,10 @@ export default defineComponent({
 
     onMounted(async () => {
       MenuComponent.reinitialization();
-      setCurrentPageBreadcrumbs("Kelas", ["Daftar Kelas"]);
+      setCurrentPageBreadcrumbs("Jurusan", ["Daftar Jurusan"]);
 
-      const response = await ApiService.get("/classrooms");
-
+      const response = await ApiService.get("/majors");
+ 
       items.value = response.data.data;
 
       loading.value = false;
@@ -245,7 +254,7 @@ export default defineComponent({
           items.value.splice(i, 1);
         }
       }
-      await ApiService.delete(`/classrooms/${id}`);
+      await ApiService.delete(`/majors/${id}`);
     };
 
     const search = ref<string>("");
@@ -265,7 +274,7 @@ export default defineComponent({
     };
 
     const exportItems = async () => {
-      const response = await ApiService.post(`/classrooms`, {});
+      const response = await ApiService.post(`/majors`, {});
 
       return window.open(response.data);
     };

@@ -76,6 +76,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/apps/classrooms/Create.vue"),
       },
       {
+        name: "majors",
+        path: "/majors",
+        component: () => import("@/views/apps/majors/Index.vue"),
+      },
+      {
+        name: "majors-create",
+        path: "/majors/create",
+        component: () => import("@/views/apps/majors/Create.vue"),
+      },
+      {
         name: "helps",
         path: "/helps",
         component: () => import("@/views/apps/helps/Index.vue"),

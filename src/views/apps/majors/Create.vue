@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Nama Bantuan</label>
+            <label class="required fs-6 fw-bold mb-2">Nama Jurusan</label>
             <!--end::Label-->
 
             <!--begin::Input-->
@@ -23,70 +23,51 @@
           </div>
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Kategori</label>
+            <label class="fs-6 fw-bold mb-2">kode</label>
             <!--end::Label-->
 
             <!--begin::Input-->
-            <el-form-item prop="help_category_id">
-              <el-select
+            <el-form-item prop="code">
+              <el-input
+                v-model="formData.code"
+                type="text"
+                placeholder=""
+              />
+            </el-form-item>
+            <!--end::Input-->
+          </div>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          
+        <div class="col-md-6">
+            <!--begin::Label-->
+            <label class="required fs-6 fw-bold mb-2">Program Studi</label>
+            <!--end::Label-->
+
+            <!--begin::Input-->
+            <el-form-item prop="study_program_id">
+               <el-select
                 filterable
                 class="w-100"
-                v-model="formData.help_category_id"
-                placeholder="Pilih Kategori"
+                v-model="formData.study_program_id"
+                placeholder="Pilih Program Studi"
               >
                 <el-option
-                  v-for="helpCategory in helpCategories"
-                  :key="helpCategory.id"
-                  :label="helpCategory.name"
-                  :value="helpCategory.id"
+                  v-for="study_program in study_programs"
+                  :key="study_program.id"
+                  :label="study_program.name"
+                  :value="study_program.id"
                 ></el-option>
               </el-select>
             </el-form-item>
             <!--end::Input-->
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Konten</label>
-            <!--end::Label-->
-
-            <!--begin::Input-->
-            <el-form-item prop="name">
-              <editor
-                v-model="formData.content"
-                :init="{
-                  height: 500,
-                  menubar: 'insert',
-                  plugins: [
-                    'advlist autolink lists link image charmap',
-                    'searchreplace visualblocks code fullscreen',
-                    'print preview anchor insertdatetime media',
-                    'paste code help wordcount table',
-                  ],
-                  toolbar:
-                    'undo redo | formatselect | bold italic |         alignleft aligncenter alignright |         bullist numlist outdent indent | help',
-                }"
-              >
-              </editor>
-            </el-form-item>
-            <!--end::Input-->
-          </div>
-        </div>
         <!--end::Input group-->
-        <div class="row">
-          <div class="col-md-12">
-            <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">IS FAQ?</label>
-            <!--end::Label-->
 
-            <!--begin::Input-->
-            <el-form-item prop="is_faq">
-              <el-checkbox v-model="formData.is_faq" />
-            </el-form-item>
-            <!--end::Input-->
-          </div>
-        </div>
 
         <!--begin::Button-->
         <button
@@ -122,61 +103,42 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import ApiService from "@/core/services/ApiService";
 import { AxiosRequestConfig } from "axios";
 import { useRouter } from "vue-router";
-import Editor from "@tinymce/tinymce-vue";
 
 export default defineComponent({
-  name: "helps-create",
-  components: {
-    Editor,
-  },
+  name: "majors-create",
   setup() {
     const router = useRouter();
     const formRef = ref<null | HTMLFormElement>(null);
     const loading = ref<boolean>(false);
     const formData = reactive({
-      is_faq: false,
     });
 
-    let helpCategories = ref([]);
+    let study_programs = ref([]);
 
     onMounted(async () => {
       // Reinit
       MenuComponent.reinitialization();
 
       // Set Breadcrumbs
-      setCurrentPageBreadcrumbs("Bantuan", ["Daftar Bantuan"]);
+      setCurrentPageBreadcrumbs("Jurusan", ["Daftar jurusan"]);
 
       // Load data for options select
-      const helpCategoryResponse = await ApiService.get("/help-categories");
-      helpCategories.value = helpCategoryResponse.data.data;
+      const study_programResponse = await ApiService.get("/study-programs");
+      study_programs.value = study_programResponse.data.data;
     });
 
     const rules = ref({
       name: [
         {
           required: true,
-          message: "Nama Bantuan diperlukan",
+          message: "Nama Jurusan diperlukan",
           trigger: "change",
         },
       ],
-      content: [
+      study_program_id: [
         {
           required: true,
-          message: "Konten diperlukan",
-          trigger: "change",
-        },
-      ],
-      help_category_id: [
-        {
-          required: true,
-          message: "Kategori bantuan diperlukan",
-          trigger: "change",
-        },
-      ],
-      is_faq: [
-        {
-          required: false,
-          message: "FAQ diperlukan",
+          message: "Program Studi diperlukan",
           trigger: "change",
         },
       ],
@@ -193,7 +155,7 @@ export default defineComponent({
           // const data = <AxiosRequestConfig>formData.value;
 
           const postResponse = await ApiService.post(
-            "/helps",
+            "/majors",
             formData as AxiosRequestConfig
           );
           loading.value = false;
@@ -208,7 +170,7 @@ export default defineComponent({
                 confirmButton: "btn btn-primary",
               },
             }).then(() => {
-              router.push({ name: "helps" });
+              router.push({ name: "majors" });
             });
           }
         } else {
@@ -227,7 +189,7 @@ export default defineComponent({
     };
 
     return {
-      helpCategories,
+      study_programs,
       formData,
       loading,
       formRef,

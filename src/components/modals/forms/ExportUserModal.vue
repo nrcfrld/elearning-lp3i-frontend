@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    id="kt_customers_export_modal"
+    id="kt_users_export_modal"
     tabindex="-1"
     aria-hidden="true"
   >

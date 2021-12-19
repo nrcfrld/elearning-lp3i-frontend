@@ -27,9 +27,11 @@
           class="d-flex justify-content-end"
           data-kt-item-table-toolbar="base"
         >
-
           <!--begin::Add item-->
-          <router-link :to="{ name: 'classrooms-create' }" class="btn btn-primary">
+          <router-link
+            :to="{ name: 'classrooms-create' }"
+            class="btn btn-primary"
+          >
             <span class="svg-icon svg-icon-2">
               <inline-svg src="media/icons/duotone/Navigation/Plus.svg" />
             </span>
@@ -96,14 +98,13 @@
               v-model="checkeditems"
               :value="item.id"
             />
-          </div> 
-
+          </div>
         </template>
         <template v-slot:cell-code="{ row: item }">
           {{ item.code }}
         </template>
         <template v-slot:cell-name="{ row: item }">
-         <p class="text-center"> {{ item.name }} </p>
+          <p class="text-center">{{ item.name }}</p>
         </template>
         <template v-slot:cell-major="{ row: item }">
           {{ item.major.id }}
@@ -140,18 +141,8 @@
               <li class="px-3">
                 <router-link
                   class="menu-item py-3 px-3 rounded-3 dropdown-item"
-                  :to="{
-                    name: 'classrooms-detail',
-                    params: {
-                      id: item.id,
-                    },
-                  }"
-                  >View</router-link
-                >
-              </li>
-              <li class="px-3">
-                <a class="menu-item py-3 px-3 rounded-3 dropdown-item" href="#"
-                  >Edit</a
+                  :to="`/classrooms/${item.id}`"
+                  >Edit</router-link
                 >
               </li>
             </ul>
@@ -205,7 +196,6 @@ export default defineComponent({
         key: "major",
         sortable: true,
       },
-      
     ]);
     // const inititems = ref<Array<Iitems>>([]);
 
@@ -216,7 +206,7 @@ export default defineComponent({
       setCurrentPageBreadcrumbs("Kelas", ["Daftar Kelas"]);
 
       const response = await ApiService.get("/classrooms");
- 
+
       items.value = response.data.data;
 
       loading.value = false;
@@ -292,6 +282,6 @@ export default defineComponent({
       loading,
       exportItems,
     };
-  }, 
+  },
 });
-</script> 
+</script>

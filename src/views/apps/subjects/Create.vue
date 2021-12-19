@@ -264,7 +264,11 @@ export default defineComponent({
       setCurrentPageBreadcrumbs("Matakuliah", ["Daftar Matakuliah"]);
 
       // Load data for options select
-      const userResponse = await ApiService.get("/users");
+      const userResponse = await ApiService.get("/users", "", {
+        params: {
+          role: "dosen",
+        },
+      });
       const campusResponse = await ApiService.get("/campuses");
       campuses.value = campusResponse.data.data;
       lectures.value = userResponse.data.data;

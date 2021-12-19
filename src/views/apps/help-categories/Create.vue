@@ -12,7 +12,9 @@
         <div class="row">
           <div class="col-md-6">
             <!--begin::Label-->
-            <label class="required fs-6 fw-bold mb-2">Nama Kategori Bantuan</label>
+            <label class="required fs-6 fw-bold mb-2"
+              >Nama Kategori Bantuan</label
+            >
             <!--end::Label-->
 
             <!--begin::Input-->
@@ -53,14 +55,16 @@
 
             <!--begin::Input-->
             <el-form-item prop="description">
-                <el-input v-model="formData.description" type="textarea" placeholder="" />
+              <el-input
+                v-model="formData.description"
+                type="textarea"
+                placeholder=""
+              />
             </el-form-item>
             <!--end::Input-->
           </div>
         </div>
         <!--end::Input group-->
-
-        
 
         <!--begin::Button-->
         <button
@@ -96,13 +100,9 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import ApiService from "@/core/services/ApiService";
 import { AxiosRequestConfig } from "axios";
 import { useRouter } from "vue-router";
-import Editor from "@tinymce/tinymce-vue";
 
 export default defineComponent({
   name: "help-categories-create",
-  components:{
-    Editor
-  },
   setup() {
     const router = useRouter();
     const formRef = ref<null | HTMLFormElement>(null);
@@ -116,7 +116,9 @@ export default defineComponent({
       MenuComponent.reinitialization();
 
       // Set Breadcrumbs
-      setCurrentPageBreadcrumbs("Kategori Bantuan", ["Daftar Kategori Bantuan"]);
+      setCurrentPageBreadcrumbs("Kategori Bantuan", [
+        "Daftar Kategori Bantuan",
+      ]);
 
       // Load data for options select
       const helpCategoryResponse = await ApiService.get("/help-categories");

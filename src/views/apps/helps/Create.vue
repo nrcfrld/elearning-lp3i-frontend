@@ -53,21 +53,21 @@
 
             <!--begin::Input-->
             <el-form-item prop="name">
-                <editor
-                    v-model="formData.content"
-                    :init="{
-                      height: 500,
-                      menubar: false,
-                      plugins: [
-                        'advlist autolink lists link image charmap',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'paste code help wordcount table',
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic |         alignleft aligncenter alignright |         bullist numlist outdent indent | help',
-                    }"
-                  >
+              <editor
+                v-model="formData.content"
+                :init="{
+                  height: 500,
+                  menubar: 'insert',
+                  plugins: [
+                    'advlist autolink lists link image charmap',
+                    'searchreplace visualblocks code fullscreen',
+                    'print preview anchor insertdatetime media',
+                    'paste code help wordcount table',
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic |         alignleft aligncenter alignright |         bullist numlist outdent indent | help',
+                }"
+              >
               </editor>
             </el-form-item>
             <!--end::Input-->
@@ -82,13 +82,11 @@
 
             <!--begin::Input-->
             <el-form-item prop="is_faq">
-              <el-checkbox v-model="formData.is_faq"/>
+              <el-checkbox v-model="formData.is_faq" />
             </el-form-item>
             <!--end::Input-->
           </div>
         </div>
-
-        
 
         <!--begin::Button-->
         <button
@@ -128,15 +126,15 @@ import Editor from "@tinymce/tinymce-vue";
 
 export default defineComponent({
   name: "helps-create",
-  components:{
-    Editor
+  components: {
+    Editor,
   },
   setup() {
     const router = useRouter();
     const formRef = ref<null | HTMLFormElement>(null);
     const loading = ref<boolean>(false);
     const formData = reactive({
-      is_faq: false
+      is_faq: false,
     });
 
     let helpCategories = ref([]);

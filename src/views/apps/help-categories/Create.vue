@@ -153,13 +153,6 @@ export default defineComponent({
           trigger: "change",
         },
       ],
-      parent_id: [
-        {
-          required: true,
-          message: "Parent ID diperlukan",
-          trigger: "change",
-        },
-      ],
     });
 
     const submit = () => {

@@ -104,10 +104,10 @@
           {{ item.code }}
         </template>
         <template v-slot:cell-name="{ row: item }">
-          <p class="text-center">{{ item.name }}</p>
+          {{ item.name }}
         </template>
         <template v-slot:cell-major="{ row: item }">
-          {{ item.major.id }}
+         <p class="text-center"> {{ item.major.name }}</p>
         </template>
         <template v-slot:cell-actions="{ row: item }">
           <div class="btn-group">

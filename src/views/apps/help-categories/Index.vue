@@ -109,8 +109,8 @@
         <!-- <template v-slot:cell-help_category="{ row: item }">
           {{ item.help_category.name }}
         </template> -->
-        <template v-slot:cell-parent_id="{ row: item }">
-          <p class="text-center">{{ item.parent_id }}</p>
+        <template v-slot:cell-parent="{ row: item }">
+          <p class="text-center">{{ item.parent.name }}</p>
         </template>
 
         <!-- <template v-slot:cell-semester="{ row: item }">
@@ -202,7 +202,7 @@ export default defineComponent({
       },
       {
         name: "Kategori Induk",
-        key: "parent_id",
+        key: "parent",
         sortable: true,
       },
 

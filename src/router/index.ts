@@ -39,12 +39,19 @@ const routes: Array<RouteRecordRaw> = [
         path: "/subjects/create",
         component: () => import("@/views/apps/subjects/Create.vue"),
       },
-      // Perkuliahan
+      // Start Perkuliahan
       {
         path: "/perkuliahanku",
         name: "college",
         component: () => import("@/views/apps/college/Index.vue"),
       },
+      {
+        name: "college-subject",
+        path: "/perkuliahanku/:id",
+        component: () => import("@/views/apps/college/Detail.vue"),
+        props: true,
+      },
+      // End Perkuliahanku
       {
         name: "campuses",
         path: "/campus",
@@ -91,7 +98,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/apps/helps/Index.vue"),
       },
       {
-        name: "helps-create", 
+        name: "helps-create",
         path: "/helps/create",
         component: () => import("@/views/apps/helps/Create.vue"),
       },

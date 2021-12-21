@@ -1,15 +1,25 @@
 <template>
-  <h1>PerkuliahanKu</h1>
   <div class="row mt-5">
     <div class="col-lg-8">
+      <el-skeleton v-if="loading" animated>
+        <template #template>
+          <el-skeleton-item
+            variant="rect"
+            style="height: 160px"
+            class="shadow"
+          />
+        </template>
+      </el-skeleton>
+
       <StatisticsWidget1
-        v-for="i in 8"
-        :key="i"
+        v-for="subject in subjects"
+        :key="subject.id"
         widget-classes="card-xl-stretch mb-xl-8 border shadow mb-3"
         background="abstract-2.svg"
-        title="Pemrograman Web 2"
-        time="Senin, 08:00 - 11:40"
-        description="Pak Dosen Ganteng"
+        :title="subject.name"
+        :time="`${subject.day}, ${subject.start_at} - ${subject.end_at}`"
+        :description="subject.lecture.name"
+        :id="subject.id"
       ></StatisticsWidget1>
     </div>
     <div class="col-lg-4">
@@ -39,10 +49,24 @@ export default defineComponent({
     StatisticsWidget1,
   },
   setup() {
+    let subjects = ref([]);
+    let loading = ref(true);
+
     onMounted(async () => {
       MenuComponent.reinitialization();
       setCurrentPageBreadcrumbs("Perkuliahan", []);
+
+      const responseSubject = await ApiService.get("/subjects");
+
+      subjects.value = responseSubject.data.data;
+
+      loading.value = false;
     });
+
+    return {
+      subjects,
+      loading,
+    };
   },
 });
 </script>

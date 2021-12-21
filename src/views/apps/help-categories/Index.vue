@@ -27,9 +27,11 @@
           class="d-flex justify-content-end"
           data-kt-item-table-toolbar="base"
         >
-
           <!--begin::Add item-->
-          <router-link :to="{ name: 'help-categories-create' }" class="btn btn-primary">
+          <router-link
+            :to="{ name: 'help-categories-create' }"
+            class="btn btn-primary"
+          >
             <span class="svg-icon svg-icon-2">
               <inline-svg src="media/icons/duotone/Navigation/Plus.svg" />
             </span>
@@ -39,7 +41,7 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Group actions-->
-        <div 
+        <div
           v-else
           class="d-flex justify-content-end align-items-center"
           data-kt-item-table-toolbar="selected"
@@ -107,7 +109,7 @@
         <!-- <template v-slot:cell-help_category="{ row: item }">
           {{ item.help_category.name }}
         </template> -->
-        <template v-slot:cell-parent_id="{ row: item }"> 
+        <template v-slot:cell-parent_id="{ row: item }">
           <p class="text-center">{{ item.parent_id }}</p>
         </template>
 
@@ -147,10 +149,9 @@
                 py-4
               "
             >
-              
               <li class="px-3">
                 <a class="menu-item py-3 px-3 rounded-3 dropdown-item" href="#"
-                  >{{item.id}} Edit</a
+                  >{{ item.id }} Edit</a
                 >
               </li>
             </ul>
@@ -233,7 +234,7 @@ export default defineComponent({
 
       items.value = response.data.data;
 
-      loading.value = false; 
+      loading.value = false;
       refresh.value += 1;
     });
 
@@ -296,7 +297,7 @@ export default defineComponent({
       searchItems,
       checkeditems,
       deleteFewitems,
-      refresh, 
+      refresh,
       loading,
     };
   },

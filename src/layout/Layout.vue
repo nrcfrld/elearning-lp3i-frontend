@@ -129,8 +129,8 @@ export default defineComponent({
       ScrollComponent.bootstrap();
       DrawerComponent.updateAll();
       ScrollComponent.updateAll();
-      console.log(role.value.name);
-      if (role.value.name != "admin") {
+      // console.log(role.value.name);
+      if (role.value && role.value.name != "admin") {
         store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "aside-enabled");
       }
 
@@ -138,6 +138,7 @@ export default defineComponent({
       setTimeout(() => {
         // Remove page loader after some time
         store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-loading");
+        store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "aside-enabled");
       }, 500);
     });
 

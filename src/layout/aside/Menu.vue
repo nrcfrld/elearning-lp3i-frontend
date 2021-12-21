@@ -248,7 +248,7 @@ export default defineComponent({
     };
 
     const mainMenus = MainMenuConfig.filter((item) =>
-      item.roles.includes(user.value.role.name)
+      user.value.role ? item.roles.includes(user.value.role.name) : false
     );
 
     return {

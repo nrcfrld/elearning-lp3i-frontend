@@ -8,10 +8,10 @@
   >
     <!--begin::Body-->
     <div class="card-body">
-      <a
-        href="#"
+      <router-link
+        :to="{ name: 'college-subject', params: { id: id } }"
         class="card-title fw-bolder text-muted text-hover-primary fs-4"
-        >{{ title }}</a
+        >{{ title }}</router-link
       >
 
       <div class="fw-bolder text-primary my-6">{{ time }}</div>
@@ -36,7 +36,12 @@ export default defineComponent({
     title: String,
     time: String,
     description: String,
+    id: String,
   },
-  components: {},
+  setup(props) {
+    return {
+      ...props,
+    };
+  },
 });
 </script>

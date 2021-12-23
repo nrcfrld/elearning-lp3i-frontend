@@ -136,8 +136,14 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     if (JwtService.getToken()) {
       ApiService.setHeader();
       ApiService.post("auth/verify", {})
-        .then(({ data }) => {
+        .then(async ({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
+          if (data.user.role.name !== "admin") {
+            this.context.dispatch(
+              Actions.REMOVE_BODY_CLASSNAME,
+              "aside-enabled"
+            );
+          }
         })
         .catch(({ response }) => {
           if (response.status === 401) {

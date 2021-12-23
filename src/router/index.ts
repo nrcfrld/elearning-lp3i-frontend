@@ -51,6 +51,18 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/apps/college/Detail.vue"),
         props: true,
       },
+      {
+        name: "meet-detail",
+        path: "/:subjectId/pertemuan/:id",
+        component: () => import("@/views/apps/meets/Detail.vue"),
+        props: true,
+      },
+      {
+        name: "meet-attendance",
+        path: "/:subjectId/kehadiran/:id",
+        component: () => import("@/views/apps/meets/Attendance.vue"),
+        props: true,
+      },
       // End Perkuliahanku
       {
         name: "campuses",

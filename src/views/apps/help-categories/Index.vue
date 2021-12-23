@@ -110,7 +110,7 @@
           {{ item.help_category.name }}
         </template> -->
         <template v-slot:cell-parent="{ row: item }">
-          <p class="text-center">{{ item.parent.name }}</p>
+          <p class="text-center">{{ item.parent?.name || "-" }}</p>
         </template>
 
         <!-- <template v-slot:cell-semester="{ row: item }">
